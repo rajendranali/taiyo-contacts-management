@@ -16,41 +16,59 @@ const AddContactPage: React.FC = () => {
     navigate('/');
   };
 
+  const handleBack = () => {
+    navigate(-1); // Navigates back to the previous page
+  };
+
   return (
-    <div className="p-4">
-      <h2 className="text-xl font-bold mb-4">Add Contact</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="p-8 max-w-md mx-auto bg-white rounded shadow-md">
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-2xl font-bold">Add Contact</h2>
+        <button
+          onClick={handleBack}
+          className="text-blue-500 hover:text-blue-600"
+        >
+          Back
+        </button>
+      </div>
+      <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label className="block">Name</label>
+          <label className="block mb-2 text-gray-700">Name</label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="border p-2 rounded w-full"
+            className="border border-gray-300 p-3 rounded w-full focus:outline-none focus:ring focus:ring-blue-300"
             required
+            placeholder="Enter name"
           />
         </div>
         <div>
-          <label className="block">Email</label>
+          <label className="block mb-2 text-gray-700">Email</label>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="border p-2 rounded w-full"
+            className="border border-gray-300 p-3 rounded w-full focus:outline-none focus:ring focus:ring-blue-300"
             required
+            placeholder="Enter email"
           />
         </div>
         <div>
-          <label className="block">Phone</label>
+          <label className="block mb-2 text-gray-700">Phone</label>
           <input
             type="text"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            className="border p-2 rounded w-full"
+            className="border border-gray-300 p-3 rounded w-full focus:outline-none focus:ring focus:ring-blue-300"
             required
+            placeholder="Enter phone number"
           />
         </div>
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
+        <button
+          type="submit"
+          className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded focus:outline-none focus:ring-4 focus:ring-blue-300 transition duration-300"
+        >
           Add Contact
         </button>
       </form>

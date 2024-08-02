@@ -2,9 +2,9 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { useQuery } from 'react-query';
 import axios from 'axios';
-import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend } from 'chart.js';
 
-ChartJS.register(CategoryScale, LinearScale, LineElement, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend);
 
 const ChartsPage: React.FC = () => {
   const { data, error, isLoading } = useQuery('casesHistoricalData', async () => {
