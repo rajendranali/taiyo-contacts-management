@@ -5,13 +5,16 @@ import axios from 'axios';
 import { LatLngExpression } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
+interface CountryInfo {
+  _id: string;
+  lat: number;
+  long: number;
+  flag: string;
+}
+
 interface CountryData {
   country: string;
-  countryInfo: {
-    _id: string;
-    lat: number;
-    long: number;
-  };
+  countryInfo: CountryInfo;
   active: number;
   recovered: number;
   deaths: number;
@@ -32,16 +35,20 @@ const MapPage: React.FC = () => {
   return (
     <div>
       <h2 className="text-xl font-bold mb-4">COVID-19 Cases by Country</h2>
-      <MapContainer center={center} zoom={zoom} style={{ height: '500px' }}>
+      <MapContainer center={center} zoom={zoom} style={{ height: '500px', width: '100%' }}>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         {data?.map((country) => (
-          <Marker key={country.countryInfo._id} position={[country.countryInfo.lat, country.countryInfo.long]}>
+          <Marker
+            key={country.countryInfo._id}
+            position={[country.countryInfo.lat, country.countryInfo.long]}
+          >
             <Popup>
               <div>
                 <h3>{country.country}</h3>
-                <p>Active: {country.active}</p>
+                <p>Active Cases: {country.active}</p>
                 <p>Recovered: {country.recovered}</p>
                 <p>Deaths: {country.deaths}</p>
+                <img src={country.countryInfo.flag} alt={`${country.country} flag`} width="50" />
               </div>
             </Popup>
           </Marker>
